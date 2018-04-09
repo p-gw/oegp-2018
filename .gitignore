@@ -1,4 +1,5 @@
 node_modules
 test
 bower.json
+package.json
 Gruntfile.js
