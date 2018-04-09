@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,700" rel="stylesheet">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/github-gist.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-image="images/bmbwf_logo.jpg" data-background-size="12%" data-background-position="5% 5%"><!-- Slide 00 -->
+          <h4>Zum Einfluss von Persönlichkeitsmerkmalen auf die Testleistung in Mathematik</h4>
+          <p style="font-size: 0.7em;">Philipp Gewessler, Jan Steinfeld, Larissa Bartok, </br>Isabella Vormittag, Michael Themessl-Huber</p>
+          <p style="font-size: 0.6em;">Bundesministerium für Bildung, Wissenschaft und Forschung</p>
+        </section>
+
+        <section><!-- Slide 01 -->
+          <h3>Aufgabenfeldtestung</h3>
+          <p>Wesentlicher Bestandteil des Aufgabenqualitätszyklus von SRP-Aufgaben</p>
+          <p>Ziel: Bestimmung von empirischen Aufgabenkennwerten</br>(u.a. Itemschwierigkeiten, DIF Parameter)</p>
+          <p>Besondere Relevanz von Geschlechts-DIF aufgrund beobachteter Unterschiede in der Testleistung</br><span style="font-size: 0.7em;">(SRP: <a href="http://www.statistik.at/web_de/presse/116271.html">Statistik Austria, 2018</a>; FT: <a href="https://eldorado.tu-dortmund.de/bitstream/2003/36391/1/BzMU-2017-BARTOK.pdf">Bartok et al., 2017</a>; PISA: <a href="https://www.bifie.at/wp-content/uploads/2017/04/PISA15_Erstbericht_Gesamt_final_web.pdf">Suchań & Breit, 2016</a>)</span></p>
+        <aside class="notes">
+        </aside>
+        </section>
+
+        <section><!-- Slide 02 -->
+          <h3>Forschung im Kontext der Feldtestung</h3>
+          <p></p>
+          <p>Feldtestungen ermöglichen zusätzliche Fragebogen-untersuchungen zu Einflussfaktoren der Testleistung</p>
+          <p>Erhebung von <em>Selbstkonzept</em>, <em>Selbstwirksamkeit</em> und <em>Geschlechtsstereotypen</em></p>
+          <h5>mathematisches Selbstkonzept</h5>
+          <p>mentale Repräsentation der eigenen Person in Form von Vorstellungen, Einstellungen und Beschreibungen bezüglich Mathematik</p>
+        </section>
+
+        <section><!-- Slide 03 -->
+          <h3>Design und Datengrundlage</h3>
+          <p></p>
+          <h4>Feldtestung 2017</h4>
+          <p>300 Aufgaben an 2242 SchülerInnen an 56 Standorten</p>
+          <p>Multi-Matrix Testdesign</br>(45 Testhefte zu je 21 Aufgaben, dreifach verlinkt)</p>
+          <p>Fragebogen im Anschluss der Aufgabenbearbeitung</p>
+          <aside class="notes">
+            <p>repräsentative Stichprobe von Schülerinnen und Schülern</p>
+          </aside>
+        </section>
+
+        <section><!-- Slide 04 -->
+          <h3>Modellierung</h3>
+          <p>(bayesianische) IRT-Modelle mit latenter Mehrebenenregression auf den Personenparametern (&theta;)</p>
+          <div style="float: left; width: 65%;">
+            <img src="images/irt_dag.png"></img>
+          </div>
+          <div style="float: right; width: 35%; text-align: left; font-size: 0.5em;">
+            <p>$y_{ij} = \mathrm{Bernoulli}(\pi_{ij})$</p>
+            <p>$\pi_{ij} = \mathrm{logit}^{-1}(\alpha_j \theta_i - \beta_j)$</p>
+            <p>$\theta_i \sim \mathrm{Normal}(\mu_{\theta_i}, \sigma_{\theta})$</p>
+            <p>$\mu_{\theta_i} = a_i + a_{BL[i]} + a_{SO[i]} + \mathbf{x}_{i}\mathbf{b}$</p>
+            <p>$a_{BL} \sim \mathrm{Normal}(0, \sigma_{a_{BL}})$</p>
+            <p>$a_{SO} \sim \mathrm{Normal}(0, \sigma_{a_{SO}})$</p>
+            <p>$b, \sigma_{\theta}, \sigma_{a_{BL}}, \sigma_{a_{SO}} \sim \mathrm{Normal}(0, 1)$</p>
+            <p>$\log\alpha_j \sim \mathrm{Normal}(0.5, 1)$</p>
+            <p>$\beta_j \sim \mathrm{Normal}(0, 1)$</p>
+          </div>
+          <aside class="notes">
+          <p>Schätzung über MCMC-Verfahren (HMC) in Stan</p>
+          </aside>
+        </section>
+
+        <section><!-- Slide 05 -->
+          <h3>Ergebnisse: Modellwahl</h3>
+          <img src="images/model_comparison.png"></img>
+        </section>
+
+        <section><!-- Slide 06 -->
+          <h3>Ergebnisse: Parameterschätzungen</h3>
+          <img src="images/parameter_plot.png"></img>
+        </section>
+
+        <section><!-- Slide 07 -->
+          <h3>Ergebnisse: Selbstkonzept (1)</h3>
+          <img src="images/marginal_sk.png"></img>
+        </section>
+
+        <section><!-- Slide 07b -->
+          <h3>Ergebnisse: Selbstkonzept (2)</h3>
+          <img src="images/standort_sk.png"></img>
+        </section>
+
+
+        <section><!-- Slide 08 -->
+          <h3>Ergebnisse: Geschlechtsunterschiede</h3>
+          <div style="position:relative; width:912px; height:391px; margin:0 auto;">
+            <img width="100%" height="100%" src="images/gender_replicated.png" style="position:absolute;top:0;left:0;" />
+            <img class="fragment" width="100%" height="100%" src="images/gender_simulated.png" style="position:absolute;top:0;left:0;" />
+          </div>
+        </section>
+
+        <section><!-- Slide 09 -->
+          <h3>Diskussion</h3>
+          <p>Selbstkonzept als essentielle Variable zur Prädiktion von Testleistung identifiziert</p>
+          <p>Geschlechtsunterschied der Mathematik-Feldtestungsleistung stark durch Unterschiede im Selbstkonzept modieriert</p>
+          <p>Selbstkonzept kann durch die Rolle der Lehrkraft, Lehr- und Lernumbgebung bzw. Sozialisation beeinflusst werden</p>
+          <p>Bewusstsein bei LehrerInnen und Eltern schaffen</p>
+        </section>
+
+        <section><!-- Slide 10 -->
+          <h3>Ausblick</h3>
+          <p>Überarbeitung des Fragebogens und miteinbeziehen weiterer potentieller Einflussfaktoren</br><span style="font-size: 0.7em;">(in Arbeit)</span></p>
+          <p>Feldtestung 2018: Prädiktionskraft des Modells überprüfen <span style="font-size: 0.7em;">(in Arbeit)</span></p>
+        </section>
+
+				<section data-background-image="images/bmbwf_logo.jpg" data-background-size="12%" data-background-position="5% 5%"><!-- Slide 00 -->
+          <h4>Vielen Dank für Ihre Aufmerksamkeit!</h4>
+          <p style="font-size: 0.5em;">Kontakt</br><a href="mailto:philipp.gewessler@bmbwf.gv.at">philipp.gewessler@bmbwf.gv.at</a></p>
+          <p style="font-size: 0.5em;">Präsentation</br><a href="https://github.com/p-gw/oegp-2018">github.com/p-gw/oegp-2018</a></p>
+          <p style="font-size: 0.5em;">Bundesministerium für Bildung, Wissenschaft und Forschung</br><a href="https://www.bmbwf.gv.at">www.bmbwf.gv.at</a></p>
+          <p style="font-size: 0.5em;">Standardisierte Reife- und Diplomprüfung</br><a href="https://www.srdp.at">www.srdp.at</a></p>
+        </section>
+
+        <section><!-- Appendix 1 -->
+          <h3>Appendix: Fragebogen (1)</h3>
+          <p style="font-size: 0.7em;">Beantwortung auf einer 5-stufigen Likert Skala</br>(<i>trifft nicht zu</i>, <i>trifft eher nicht zu</i>, <i>weder - noch</i>, <i>trifft eher zu</i>, <i>trifft zu</i>)</p>
+          <h4>Selbstkonzept</h4>
+          <ol start="6" style="font-size: 0.7em;">
+            <li>In Mathematik gehöre ich zu den Guten in meiner Klasse.</li>
+            <li>Im Vergleich zu den Noten in anderen Fächern habe ich in Mathematik gute Noten.</li>
+            <li>Im Allgemeinen verstehe ich mathematische Sachverhalte sehr schnell.</li>
+            <li>Ich war schon immer gut in Mathematik.</li>
+            <li>Mathematik bereitet mir Freude.</li>
+            <li>Ich bearbeite gerne herausfordernde Mathematikaufgaben.</li>
+            <li>Ein gutes mathematisches Verständnis ist für die berufliche Zukunft wichtig.</li>
+          </ol>
+        </section>
+
+        <section><!-- Appendix 1 -->
+          <h3>Appendix: Fragebogen (2)</h3>
+          <h4>Selbstwirksamkeit</h4>
+          <ol start="13" style="font-size: 0.7em;">
+            <li>Ich bin zuversichtlich, die Matura in Mathematik mit angemessener Vorbereitung bewältigen zu können.</li>
+            <li>Wenn ich mich auf Prüfungen in Mathematik gründlich vorbereite, erziele ich gute Ergebnisse.</li>
+            <li>Wenn ich mich anstrenge, kann ich den Unterrichtsstoff in Mathematik gut nachvollziehen.</li>
+            <li>Auch wenn ich bei einer Prüfung in Mathematik schlecht abschneide, bin ich zuversichtlich, die Note wieder ausgleichen zu können.</li>
+          </ol>
+        </section>
+
+        <section><!-- Appendix 1 -->
+          <h3>Appendix: Fragebogen (3)</h3>
+          <h4>Geschlechtsstereotype</h4>
+          <ol start="18" style="font-size: 0.7em;">
+            <li>In Mathematik gute Noten zu bekommen, ist für Burschen und Mädchen gleich bedeutsam.</li>
+            <li>Für die berufliche Zukunft ist für Mädchen ein gutes mathematisches Verständnis genauso wichtig wie für Burschen.</li>
+            <li>Burschen und Mädchen sind in Mathematik gleich begabt.</li>
+            <li>Für welche Unterrichtsgegenstände sich Mädchen und Burschen interessieren, ist unabhängig vom Geschlecht.</li>
+          </ol>
+        </section>
+
+        <section><!-- Appendix 1 -->
+          <h3>Appendix: CFA Fit</h3>
+          <p>&chi;<sup style="font-size: 0.7em;">2</sup>(87) = 1951.1, TLI = .96, RMSEA = 0.098 [0.094, 0.102]</p>
+          <p>r<sub style="font-size: 0.5em;">(SK, SW)</sub> = .74, r<sub style="font-size: 0.5em;">(SK, GS)</sub> = -.13, r<sub style="font-size: 0.5em;">(SW, GS)</sub> = -.18</p>
+          <img src="images/faktorscores.png"></img>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+        controls: false,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/math/math.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+
+	</body>
+</html>
