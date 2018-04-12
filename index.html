@@ -28,7 +28,7 @@
 			<div class="slides">
 				<section data-background-image="images/bmbwf_logo.jpg" data-background-size="12%" data-background-position="5% 5%"><!-- Slide 00 -->
           <h4>Zum Einfluss von Persönlichkeitsmerkmalen auf die Testleistung in Mathematik</h4>
-          <p style="font-size: 0.7em;">Philipp Gewessler, Jan Steinfeld, Larissa Bartok, </br>Isabella Vormittag, Michael Themessl-Huber</p>
+          <p style="font-size: 0.7em;">Philipp Gewessler, Jan Steinfeld, Larissa Bartok, </br>Isabella Vormittag & Michael Themessl-Huber</p>
           <p style="font-size: 0.6em;">Bundesministerium für Bildung, Wissenschaft und Forschung</p>
         </section>
 
@@ -47,7 +47,7 @@
           <p>Feldtestungen ermöglichen zusätzliche Fragebogen-untersuchungen zu Einflussfaktoren der Testleistung</p>
           <p>Erhebung von <em>Selbstkonzept</em>, <em>Selbstwirksamkeit</em> und <em>Geschlechtsstereotypen</em></p>
           <h5>mathematisches Selbstkonzept</h5>
-          <p>mentale Repräsentation der eigenen Person in Form von Vorstellungen, Einstellungen und Beschreibungen bezüglich Mathematik</p>
+          <p>mentale Repräsentation der eigenen Person in Form von Vorstellungen, Einstellungen und Beschreibungen bezüglich Mathematik</br><span style="font-size: 0.7em;">(vgl. <a href="https://doi.org/10.1007/978-3-540-88573-3_8">Möller & Trautwein, 2009</a>)</span></p>
         </section>
 
         <section><!-- Slide 03 -->
@@ -75,9 +75,8 @@
             <p>$\mu_{\theta_i} = a + a_{BL[i]} + a_{SO[i]} + \mathbf{x}_{i}\mathbf{b}$</p>
             <p>$a_{BL} \sim \mathrm{Normal}(0, \sigma_{a_{BL}})$</p>
             <p>$a_{SO} \sim \mathrm{Normal}(0, \sigma_{a_{SO}})$</p>
-            <p>$a, b, \sigma_{\theta}, \sigma_{a_{BL}}, \sigma_{a_{SO}} \sim \mathrm{Normal}(0, 1)$</p>
+            <p>$\beta_j, a, b, \sigma_{\theta}, \sigma_{a_{BL}}, \sigma_{a_{SO}} \sim \mathrm{Normal}(0, 1)$</p>
             <p>$\log\alpha_j \sim \mathrm{Normal}(0.5, 1)$</p>
-            <p>$\beta_j \sim \mathrm{Normal}(0, 1)$</p>
           </div>
           <aside class="notes">
           <p>Schätzung über MCMC-Verfahren (HMC) in Stan</p>
@@ -90,7 +89,7 @@
         </section>
 
         <section><!-- Slide 06 -->
-          <h3>Ergebnisse: Parameterschätzungen</h3>
+          <h3>Ergebnisse: Parameter</h3>
           <img src="images/parameter_plot.png"></img>
         </section>
 
@@ -198,6 +197,7 @@
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
+      Reveal.configure({ pdfMaxPagesPerSlide: 1 });
 		</script>
 
 	</body>
